@@ -6,6 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskTest {
 
     @Test
+    void getTitleSimpleTask() {
+
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        String expected = "Позвонить родителям";
+        String actual = simpleTask.getTitle();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void matchesSimpleTaskTitle() {
 
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
@@ -24,6 +35,18 @@ class TaskTest {
         boolean actual = simpleTask.matches("Позвонить родителям");
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void getSubtaskOfEpic() {
+
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(5, subtasks);
+
+        String[] expected = {"Молоко", "Яйца", "Хлеб"};
+        String[] actual = epic.getSubtask();
+
+        Assertions.assertArrayEquals(expected, actual);
     }
     @Test
     void matchesEpicSubtask() {
@@ -44,6 +67,51 @@ class TaskTest {
 
         boolean expected = false;
         boolean actual = epic.matches("Кефир");
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    void getTopicOfMeeting() {
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        String expected = "Выкатка 3й версии приложения";
+        String actual = meeting.getTitle();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    void getProjectOfMeeting() {
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        String expected = "Приложение НетоБанка";
+        String actual = meeting.getProject();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    void getStartOfMeeting() {
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        String expected = "Во вторник после обеда";
+        String actual = meeting.getStart();
 
         Assertions.assertEquals(expected, actual);
     }
