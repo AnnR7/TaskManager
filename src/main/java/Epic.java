@@ -10,22 +10,22 @@ public class Epic extends Task {
         return subtask;
     }
 
-    @Override
-    public boolean matches(String query) {
-        for (int i = 0; i < subtask.length; i++) {
-            if (subtask[i].contains(query)) {
-                return true;
-            }
-        }
-        return false;
-    }
 //    @Override
 //    public boolean matches(String query) {
-//        for (String Epic : subtask) {
-//            if (Epic.contains(query)) {
+//        for (int i = 0; i < subtask.length; i++) {
+//            if (subtask[i].contains(query)) {
 //                return true;
 //            }
 //        }
 //        return false;
 //    }
+    @Override
+    public boolean matches(String query) {
+        for (String Epic : subtask) {
+            if (Epic.contains(query)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
